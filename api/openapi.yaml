@@ -1,0 +1,299 @@
+openapi: 3.0.0
+info:
+  title: Epaggelmaties API
+  description: API for searching professionals
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /professionals:
+    get:
+      summary: Get a list of professionals
+      operationId: professionalsGET
+      responses:
+        "200":
+          description: A list of professionals
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professionals'
+                x-content-type: application/json
+      x-swagger-router-controller: Default
+    post:
+      summary: Add a new professional
+      operationId: professionalsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professionals'
+        required: true
+      responses:
+        "201":
+          description: Professional successfully added
+      x-swagger-router-controller: Default
+  /professionals/{professionalID}:
+    get:
+      summary: Get details of a professionals
+      operationId: professionalsProfessionalIDGET
+      parameters:
+      - name: professionalID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Detailed information about a professional
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professionals'
+      x-swagger-router-controller: Default
+    delete:
+      summary: Delete a professional
+      operationId: professionalsProfessionalIDDELETE
+      parameters:
+      - name: professionalID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Professional successfully deleted
+      x-swagger-router-controller: Default
+  /users:
+    get:
+      summary: Get a list of users
+      operationId: usersGET
+      responses:
+        "200":
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+                x-content-type: application/json
+      x-swagger-router-controller: Default
+    post:
+      summary: Create a new user
+      operationId: usersPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "201":
+          description: User successfully created
+      x-swagger-router-controller: Default
+  /users/{userId}:
+    get:
+      summary: Get details of a user
+      operationId: usersUserIdGET
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Detailed information about a user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-swagger-router-controller: Default
+    put:
+      summary: Update user details
+      operationId: usersUserIdPUT
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+        required: true
+      responses:
+        "200":
+          description: User successfully updated
+      x-swagger-router-controller: Default
+    delete:
+      summary: Delete a user
+      operationId: usersUserIdDELETE
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: User successfully deleted
+      x-swagger-router-controller: Default
+  /users/{userId}/appointments:
+    get:
+      summary: Get a list of appointments by a user
+      operationId: usersUserIdAppointmentsGET
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: A list of appointments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointments'
+                x-content-type: application/json
+      x-swagger-router-controller: Default
+  /appointments/{appointmentId}/appointment:
+    post:
+      summary: Arrange an appointment
+      operationId: appointmentsAppointmentIdAppointmentPOST
+      parameters:
+      - name: appointmentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppointmentRequest'
+        required: true
+      responses:
+        "200":
+          description: Appointment successfully arranged
+        "400":
+          description: "Appointment, not available or user invalid"
+      x-swagger-router-controller: Default
+  /appointment/{appointmentId}/return:
+    post:
+      summary: Return a appointment
+      operationId: appointmentAppointmentIdReturnPOST
+      parameters:
+      - name: appointmentId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnRequest'
+        required: true
+      responses:
+        "200":
+          description: Appointment successfully returned
+        "400":
+          description: "Bad request, return not possible"
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+      example:
+        name: name
+        id: 0
+        email: email
+    Professionals:
+      type: object
+      properties:
+        id:
+          type: integer
+        profession:
+          type: string
+        name:
+          type: string
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Services'
+      example:
+        profession: profession
+        name: name
+        id: 0
+        services:
+        - availableservice: availableservice
+        - availableservice: availableservice
+    Services:
+      type: object
+      properties:
+        availableservice:
+          type: string
+      example:
+        availableservice: availableservice
+    UserUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+    Appointments:
+      type: object
+      properties:
+        userId:
+          type: integer
+        professionalId:
+          type: integer
+        appointmentDate:
+          type: string
+          format: date-time
+      example:
+        professionalId: 6
+        userId: 0
+        appointmentDate: 2000-01-23T04:56:07.000+00:00
+    AppointmentRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+    ReturnRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
