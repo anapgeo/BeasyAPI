@@ -37,6 +37,6 @@ jobs:
           echo "Length: ${#RAILWAY_TOKEN}"
 
       - name: Deploy railway 
-        run: railway up --service 4d49af01-32bb-4e77-ae97-28917f460ec8 # add service id here 
+        run: railway up --service 456404c1-f880-4a7b-b0de-2331b2d2387d # add service id here 
         env: 
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
