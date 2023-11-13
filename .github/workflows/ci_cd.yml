@@ -33,7 +33,7 @@ jobs:
         run: npm i -g @railway/cli
 
       - name: Deploy railway 
-        run: railway up --service 968e8961-7523-4ea4-b310-e79009104c92 #which app to run the service 
+        run: railway up --service # add service id here 
         env: 
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       
