@@ -4,17 +4,17 @@ on: push
 
 jobs:
   ci: 
-    runs-on: ubuntu-latest #σε τι μηχάνημα τρέχει 
+    runs-on: ubuntu-latest
     steps: 
       - name: Checkout repo 
-        uses: actions/checkout@v2 #library
+        uses: actions/checkout@v2
       
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16 
 
-      - name: Download deps #download libraries 
+      - name: Download deps
         run: npm i
 
 
@@ -24,13 +24,13 @@ jobs:
   cd: 
     runs-on: ubuntu-latest 
     needs: ci 
-    if: github.ref == 'refs/heads/main' # add comment here 
+    if: github.ref == 'refs/heads/main'
     steps: 
       - name : Chekout repo 
         uses: actions/checkout@v2
 
       - name : Install Railway 
-        run: npm i -g @railway/cli # The client for the railway 
+        run: npm i -g @railway/cli
 
       - name: Deploy railway 
         run: railway up --service 968e8961-7523-4ea4-b310-e79009104c92 #which app to run the service 
