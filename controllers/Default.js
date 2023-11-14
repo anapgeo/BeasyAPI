@@ -3,8 +3,8 @@
 var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
 
-module.exports.appointmentAppointmentIdReturnPOST = function appointmentAppointmentIdReturnPOST (req, res, next, body, appointmentId) {
-  Default.appointmentAppointmentIdReturnPOST(body, appointmentId)
+module.exports.appointmentsAppointmentIdAppointmentPOST = function appointmentsAppointmentIdAppointmentPOST (req, res, next, body, appointmentId) {
+  Default.appointmentsAppointmentIdAppointmentPOST(body, appointmentId)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -13,8 +13,8 @@ module.exports.appointmentAppointmentIdReturnPOST = function appointmentAppointm
     });
 };
 
-module.exports.appointmentsAppointmentIdAppointmentPOST = function appointmentsAppointmentIdAppointmentPOST (req, res, next, body, appointmentId) {
-  Default.appointmentsAppointmentIdAppointmentPOST(body, appointmentId)
+module.exports.professiomalsProfessionalIdAppointmentsGET = function professiomalsProfessionalIdAppointmentsGET (req, res, next, professionalId) {
+  Default.professiomalsProfessionalIdAppointmentsGET(professionalId)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -55,6 +55,16 @@ module.exports.professionalsProfessionalIDDELETE = function professionalsProfess
 
 module.exports.professionalsProfessionalIDGET = function professionalsProfessionalIDGET (req, res, next, professionalID) {
   Default.professionalsProfessionalIDGET(professionalID)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.professionalsprofessionalIdPUT = function professionalsprofessionalIdPUT (req, res, next, body, professionalId) {
+  Default.professionalsprofessionalIdPUT(body, professionalId)
     .then(function (response) {
       utils.writeJson(res, response);
     })

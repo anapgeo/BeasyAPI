@@ -1,12 +1,12 @@
 {
-  "name": "epaggelmaties-api",
+  "name": "beasy-api",
   "version": "1.0.0",
-  "description": "API for searching professionals",
+  "description": "API for professionals",
   "main": "index.js",
   "scripts": {
 	"prestart": "npm install",
 	"start": "node index.js",
-	"test": "echo Test & exit 0" 
+  "test": "echo Test & exit 0" 
   },
   "keywords": [
     "swagger"
