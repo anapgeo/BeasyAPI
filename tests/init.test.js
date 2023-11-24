@@ -48,8 +48,8 @@ test.after.always((t) => {
 
 test('GET Professionals', async (t) => {
     const {body,statusCode}  = await t.context.got("professionals");
-    console.log(body);
-    console.log(statusCode);
+    //console.log(body);
+    //console.log(statusCode);
     t.is(body.length, 2);
     t.is(body[0].profession = "profession");
     t.is(statusCode = 200);
