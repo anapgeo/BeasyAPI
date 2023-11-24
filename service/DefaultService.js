@@ -21,7 +21,7 @@ exports.appointmentsAppointmentIdAppointmentPOST = function(body,appointmentId) 
  * professionalId Integer 
  * returns List
  **/
-exports.professiomalsProfessionalIdAppointmentsGET = function(professionalId) {
+exports.professionalsProfessionalIdAppointmentsGET = function(professionalId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
@@ -105,10 +105,10 @@ exports.professionalsProfessionalIDDELETE = function(professionalID) {
 
 
 /**
- * Get details of a professionals
+ * Get details of a professional
  *
  * professionalID Integer 
- * returns Professionals
+ * returns Professional
  **/
 exports.professionalsProfessionalIDGET = function(professionalID) {
   return new Promise(function(resolve, reject) {
