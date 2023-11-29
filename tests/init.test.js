@@ -51,6 +51,6 @@ test('GET Professionals', async (t) => {
     //console.log(body);
     //console.log(statusCode);
     t.is(body.length, 2);
-    t.is(body[0].profession = "profession");
-    t.is(statusCode = 200);
+    t.is(body[0].profession, "profession");
+    t.is(statusCode, 200);
 });
