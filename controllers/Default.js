@@ -13,16 +13,6 @@ module.exports.appointmentsAppointmentIdAppointmentPOST = function appointmentsA
     });
 };
 
-module.exports.professiomalsProfessionalIdAppointmentsGET = function professiomalsProfessionalIdAppointmentsGET (req, res, next, professionalId) {
-  Default.professiomalsProfessionalIdAppointmentsGET(professionalId)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
 module.exports.professionalsGET = function professionalsGET (req, res, next) {
   Default.professionalsGET()
     .then(function (response) {
@@ -63,8 +53,18 @@ module.exports.professionalsProfessionalIDGET = function professionalsProfession
     });
 };
 
-module.exports.professionalsprofessionalIdPUT = function professionalsprofessionalIdPUT (req, res, next, body, professionalId) {
-  Default.professionalsprofessionalIdPUT(body, professionalId)
+module.exports.professionalsProfessionalIdAppointmentsGET = function professionalsProfessionalIdAppointmentsGET (req, res, next, professionalId) {
+  Default.professionalsProfessionalIdAppointmentsGET(professionalId)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.professionalsprofessionalIdPUT = function professionalsprofessionalIdPUT (req, res, next, body, professionalID) {
+  Default.professionalsprofessionalIdPUT(body, professionalID)
     .then(function (response) {
       utils.writeJson(res, response);
     })

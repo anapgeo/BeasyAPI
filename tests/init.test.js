@@ -55,3 +55,38 @@ test('GET Professionals', async (t) => {
     t.is(body[0].profession, 'profession', 'First professional should have the expected profession value');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
+
+test('GET Professionals Details', async (t) => {
+    const professionalId = 0; 
+    const {body, statusCode}  = await t.context.got(`professionals/${professionalId}`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.truthy(body, 'Response should have a body property');
+    t.is(body.profession, 'profession', 'First professional should have the expected profession value');
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+test('Update Professional Details', async (t) => {
+    const professionalId = 0; 
+    const updatedProfessionalData = {        
+        "name": "coolName",
+        "email": "coolPapakiString"        
+    };
+
+    const {body, statusCode}  = await t.context.got.put(`professionals/${professionalId}`, {
+        json: updatedProfessionalData,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+test('Delete a Professional', async (t) => {
+    const professionalId = 0; 
+
+
+    const {body, statusCode}  = await t.context.got.delete(`professionals/${professionalId}`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
