@@ -63,8 +63,8 @@ module.exports.professionalsProfessionalIDGET = function professionalsProfession
     });
 };
 
-module.exports.professionalsprofessionalIdPUT = function professionalsprofessionalIdPUT (req, res, next, body, professionalId) {
-  Default.professionalsprofessionalIdPUT(body, professionalId)
+module.exports.professionalsprofessionalIdPUT = function professionalsprofessionalIdPUT (req, res, next, body, professionalID) {
+  Default.professionalsprofessionalIdPUT(body, professionalID)
     .then(function (response) {
       utils.writeJson(res, response);
     })

@@ -4,6 +4,8 @@ info:
   description: API for professionals
   version: 1.0.0
 servers:
+- url: https://virtserver.swaggerhub.com/STAVROSKIIG/busy/1.0.0
+  description: SwaggerHub API Auto Mocking
 - url: /
 paths:
   /professionals:
@@ -58,7 +60,7 @@ paths:
       summary: Update professional's details
       operationId: professionalsprofessionalIdPUT
       parameters:
-      - name: professionalId
+      - name: professionalID
         in: path
         required: true
         style: simple
@@ -69,7 +71,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserUpdate'
+              $ref: '#/components/schemas/ProfessionalUpdate'
         required: true
       responses:
         "200":
@@ -213,7 +215,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AppointmentRequest'
+              $ref: '#/components/schemas/Appointments'
         required: true
       responses:
         "200":
@@ -264,6 +266,8 @@ components:
       properties:
         id:
           type: integer
+        email:
+          type: string
         profession:
           type: string
         name:
@@ -314,13 +318,3 @@ components:
         professionalId: 6
         userId: 0
         appointmentDate: 2000-01-23T04:56:07.000Z
-    AppointmentRequest:
-      type: object
-      properties:
-        userId:
-          type: integer
-    ReturnRequest:
-      type: object
-      properties:
-        userId:
-          type: integer

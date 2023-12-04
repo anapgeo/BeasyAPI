@@ -4,7 +4,7 @@
 /**
  * Arrange an appointment
  *
- * body AppointmentRequest 
+ * body Appointments 
  * appointmentId Integer 
  * no response value expected for this operation
  **/
@@ -21,7 +21,7 @@ exports.appointmentsAppointmentIdAppointmentPOST = function(body,appointmentId) 
  * professionalId Integer 
  * returns List
  **/
-exports.professionalsProfessionalIdAppointmentsGET = function(professionalId) {
+exports.professiomalsProfessionalIdAppointmentsGET = function(professionalId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
@@ -105,10 +105,10 @@ exports.professionalsProfessionalIDDELETE = function(professionalID) {
 
 
 /**
- * Get details of a professional
+ * Get details of a professionals
  *
  * professionalID Integer 
- * returns Professional
+ * returns Professionals
  **/
 exports.professionalsProfessionalIDGET = function(professionalID) {
   return new Promise(function(resolve, reject) {
@@ -135,11 +135,11 @@ exports.professionalsProfessionalIDGET = function(professionalID) {
 /**
  * Update professional's details
  *
- * body UserUpdate 
- * professionalId Integer 
+ * body ProfessionalUpdate 
+ * professionalID Integer 
  * no response value expected for this operation
  **/
-exports.professionalsprofessionalIdPUT = function(body,professionalId) {
+exports.professionalsprofessionalIdPUT = function(body,professionalID) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
