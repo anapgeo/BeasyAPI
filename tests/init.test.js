@@ -55,3 +55,11 @@ test('GET Professionals', async (t) => {
     t.is(body[0].profession, 'profession', 'First professional should have the expected profession value');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
+
+test('GET Professionals Details', async (t) => {
+    const {body, statusCode}  = await t.context.got("professionals/0");
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(body.profession, 'profession', 'First professional should have the expected profession value');
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
