@@ -80,3 +80,13 @@ test('Update Professional Details', async (t) => {
     //console.log(statusCode);
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
+
+test('Delete a Professional', async (t) => {
+    const professionalId = 0; 
+
+
+    const {body, statusCode}  = await t.context.got.delete(`professionals/${professionalId}`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
