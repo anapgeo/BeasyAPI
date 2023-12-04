@@ -16,33 +16,6 @@ exports.appointmentsAppointmentIdAppointmentPOST = function(body,appointmentId) 
 
 
 /**
- * Get a list of appointments by a user
- *
- * professionalId Integer 
- * returns List
- **/
-exports.professiomalsProfessionalIdAppointmentsGET = function(professionalId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "professionalId" : 6,
-  "userId" : 0,
-  "appointmentDate" : "2000-01-23T04:56:07.000Z"
-}, {
-  "professionalId" : 6,
-  "userId" : 0,
-  "appointmentDate" : "2000-01-23T04:56:07.000Z"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
  * Get a list of professionals
  *
  * returns List
@@ -123,6 +96,33 @@ exports.professionalsProfessionalIDGET = function(professionalID) {
     "availableservice" : "availableservice"
   } ]
 };
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Get a list of appointments by a user
+ *
+ * professionalId Integer 
+ * returns List
+ **/
+exports.professionalsProfessionalIdAppointmentsGET = function(professionalId) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "professionalId" : 6,
+  "userId" : 0,
+  "appointmentDate" : "2000-01-23T04:56:07.000Z"
+}, {
+  "professionalId" : 6,
+  "userId" : 0,
+  "appointmentDate" : "2000-01-23T04:56:07.000Z"
+} ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {

@@ -226,7 +226,7 @@ paths:
   /professionals/{professionalId}/appointments:
     get:
       summary: Get a list of appointments by a user
-      operationId: professiomalsProfessionalIdAppointmentsGET
+      operationId: professionalsProfessionalIdAppointmentsGET
       parameters:
       - name: professionalId
         in: path
