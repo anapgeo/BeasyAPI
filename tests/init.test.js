@@ -180,3 +180,43 @@ test('Create a User', async (t) => {
 });
 
 
+//////////////////////// APPOINTMENT /////////////////////////
+
+test('Get Appointments by User', async (t) => {
+    const userId = 0; 
+    const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.true(Array.isArray(body), 'Response body should be an array');
+    t.is(body[0].userId, userId, 'First appointment should have the expected userId');
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
+test('Get Appointments by Professional', async (t) => {
+    const professionalId = 6; 
+    const {body,statusCode}  = await t.context.got(`professionals/${professionalId}/appointments`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.true(Array.isArray(body), 'Response body should be an array');
+    t.is(body[0].professionalId, professionalId, 'First appointment should have the expected professionalId');
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
+test('Create an Appointment', async (t) => {
+    const newAppointmentData = {
+        "professionalId": 80,
+        "userId": 66,
+        "appointmentDate": "2023-07-23T04:56:07.000Z"
+      };
+
+      const appointmentId = 18000; 
+
+    const {body, statusCode}  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
+        json: newAppointmentData,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
