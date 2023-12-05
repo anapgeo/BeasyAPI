@@ -90,3 +90,71 @@ test('Delete a Professional', async (t) => {
     //console.log(statusCode);
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
+
+
+//////////////////////// USER /////////////////////////
+test('GET Users', async (t) => {
+    const {body,statusCode}  = await t.context.got("users");
+    //console.log(body);
+    //console.log(statusCode);
+    t.true(Array.isArray(body), 'Response body should be an array');
+    t.true(body.length > 0, 'Response should contain at least one user');
+    t.is(body[0].name, 'name', 'First user should have the expected name');
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
+test('Get User Details', async (t) => {
+    const userId = 0; 
+    const {body, statusCode}  = await t.context.got(`users/${userId}`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.truthy(body, 'Response should have a body property');
+    t.is(body.name, 'name', 'First user should have the expected name');
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
+test('Update User Details', async (t) => {
+    const userId = 0; 
+    const updatedUserData = {        
+        "name": "coolerName",
+        "email": "coolerPapakiString"        
+    };
+
+    const {body, statusCode}  = await t.context.got.put(`users/${userId}`, {
+        json: updatedUserData,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
+test('Delete a User', async (t) => {
+    const userId = 0; 
+
+
+    const {body, statusCode}  = await t.context.got.delete(`users/${userId}`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
+test('Create a User', async (t) => {
+    const newUserData = {
+        "name": "something",
+        "id": 17,
+        "email": "eimail"
+      };
+
+    const {body, statusCode}  = await t.context.got.post(`users`, {
+        json: newUserData,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
