@@ -91,6 +91,28 @@ test('Delete a Professional', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('Create a Professional', async (t) => {
+    const newProfessionalData = {
+        "profession": "Mastoras",
+        "name": "Bob",
+        "id": 24,
+        "services": [
+          {
+            "availableservice": "tsimentoma"
+          },
+          {
+            "availableservice": "plakakia"
+          }
+        ]
+      };
+
+    const {body, statusCode}  = await t.context.got.post(`professionals`, {
+        json: newProfessionalData,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
 
 //////////////////////// USER /////////////////////////
 test('GET Users', async (t) => {
