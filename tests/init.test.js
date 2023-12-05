@@ -179,6 +179,15 @@ test('Create a User', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('Get Non-existent User Details (404)', async (t) => {
+    const nonExistentUserId = 9999;
+
+    const { statusCode } = await t.context.got(`users/${nonExistentUserId}`, { throwHttpErrors: false });
+    // console.log(statusCode);
+    t.is(statusCode, 404, 'Status code should be 404 for a non-existent user');
+});
+
+
 
 //////////////////////// APPOINTMENT /////////////////////////
 
