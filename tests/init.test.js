@@ -66,6 +66,14 @@ test('GET Professionals Details', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('GET Professionals Details-BadCase', async (t) => {
+    const professionalId = "otaksi"; 
+    const {body, statusCode}  = await t.context.got(`professionals/${professionalId}`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 404, 'Status code should be 404 for a unsuccessful request');
+});
+
 test('Update Professional Details', async (t) => {
     const professionalId = 0; 
     const updatedProfessionalData = {        
@@ -79,6 +87,21 @@ test('Update Professional Details', async (t) => {
     //console.log(body);
     //console.log(statusCode);
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+test('Update Professional Details-BadCase', async (t) => {
+    const professionalId = "om[pamios"; 
+    const updatedProfessionalData = {        
+        "name": 1234,
+        "email": "coolPapakiString"        
+    };
+
+    const {body, statusCode}  = await t.context.got.put(`professionals/${professionalId}`, {
+        json: updatedProfessionalData,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 404, 'Status code should be 404 for a unsuccessful request');
 });
 
 test('Delete a Professional', async (t) => {
@@ -112,6 +135,30 @@ test('Create a Professional', async (t) => {
     //console.log(body);
     //console.log(statusCode);
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+
+test('Create a Professional-BadCase', async (t) => {
+    const newProfessionalData = {
+        "profession": 47,
+        "name": 90,
+        "id": "deskero",
+        "services": [
+          {
+            "availableservice": 6
+          },
+          {
+            "availableservice": "plakakia"
+          }
+        ]
+      };
+
+    const {body, statusCode}  = await t.context.got.post(`professionals`, {
+        json: newProfessionalData,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 404, 'Status code should be 404 for a unsuccessful request');
 });
 
 //////////////////////// USER /////////////////////////
