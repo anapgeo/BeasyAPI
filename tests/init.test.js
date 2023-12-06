@@ -72,7 +72,7 @@ test('GET Professionals Details-BadCase', async (t) => {
     const {body, statusCode}  = await t.context.got(`professionals/${professionalId}`);
     //console.log(body);
     //console.log(statusCode);
-    t.is(statusCode, 200, 'Status code should be 404 for a unsuccessful request');
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
 });
 
 
@@ -104,7 +104,7 @@ test('Update Professional Details-BadCase', async (t) => {
     });
     //console.log(body);
     //console.log(statusCode);
-    t.is(statusCode, 200, 'Status code should be 404 for a unsuccessful request');
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
 });
 
 
@@ -162,7 +162,7 @@ test('Create a Professional-BadCase', async (t) => {
     });
     //console.log(body);
     //console.log(statusCode);
-    t.is(statusCode, 200, 'Status code should be 404 for a unsuccessful request');
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
 });
 
 
@@ -247,6 +247,7 @@ test('Get Appointments by User', async (t) => {
 });
 
 test('Get Appointments by User-BadCase', async (t) => { 
+    const userId = 0; 
     const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`);
     t.is(statusCode, 200, 'Status code should be 404 for an unsuccessful request');
 });
@@ -264,7 +265,7 @@ test('Get Appointments by Professional', async (t) => {
 test('Get Appointments by Professional-BadCase', async (t) => {
     const professionalId = "yuifgireyf"; 
     const {body,statusCode}  = await t.context.got(`professionals/${professionalId}/appointments`);
-    t.is(statusCode, 200, 'Status code should be 404 for an unsuccessful request');
+    t.is(statusCode, 400, 'Status code should be 400 for an unsuccessful request');
 });
 
 
@@ -297,5 +298,5 @@ test('Create an Appointment-BadCase', async (t) => {
         json: newAppointmentData,
     });
     
-    t.is(statusCode, 200, 'Status code should be 404 for a unsuccessful request');
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
 });
