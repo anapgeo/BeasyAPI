@@ -166,19 +166,13 @@ test('Create a Professional-BadCase', async (t) => {
     t.is(statusCode, 404, 'Status code should be 404 for a unsuccessful request');
 });
 
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
 //////////////////////// USER /////////////////////////
 test('GET Users', async (t) => {
     const {body,statusCode}  = await t.context.got("users");
     //console.log(body);
     //console.log(statusCode);
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
     t.true(Array.isArray(body), 'Response body should be an array');
     t.true(body.length > 0, 'Response should contain at least one user');
     t.is(body[0].name, 'name', 'First user should have the expected name');
@@ -186,39 +180,26 @@ test('GET Users', async (t) => {
 });
 
 
-<<<<<<< HEAD
-//this needs a bad case
-test('Get User Details', async (t) => {
-    const userId = 0; 
-    const {body, statusCode}  = await t.context.got(`users/${userId}`);
-
-
 test('Get User Details', async (t) => {
     const userId = 0; 
     const {body, statusCode}  = await t.context.got(`users/${userId}`);
     //console.log(body);
     //console.log(statusCode);
-
-=======
-test('Get User Details', async (t) => {
-    const userId = 0; 
-    const {body, statusCode}  = await t.context.got(`users/${userId}`);
-    //console.log(body);
-    //console.log(statusCode);
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
     t.truthy(body, 'Response should have a body property');
     t.is(body.name, 'name', 'First user should have the expected name');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
-
-<<<<<<< HEAD
 //this needs a bad case
+test('Get User Details', async (t) => {
+    const userId = abcd; 
+    const {body, statusCode}  = await t.context.got(`users/${userId}`);
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 404, 'Status code should be 404 for a unsuccessful request');
+});
 
 
-
-=======
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
 test('Update User Details', async (t) => {
     const userId = 0; 
     const updatedUserData = {        
@@ -229,26 +210,15 @@ test('Update User Details', async (t) => {
     const {body, statusCode}  = await t.context.got.put(`users/${userId}`, {
         json: updatedUserData,
     });
-<<<<<<< HEAD
 
-
-=======
     //console.log(body);
     //console.log(statusCode);
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
 
 test('Delete a User', async (t) => {
-<<<<<<< HEAD
-
     const userId = 0;
-=======
-    const userId = 0; 
-
-
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
     const {body, statusCode}  = await t.context.got.delete(`users/${userId}`);
     //console.log(body);
     //console.log(statusCode);
@@ -256,21 +226,6 @@ test('Delete a User', async (t) => {
 });
 
 
-<<<<<<< HEAD
-
-    const userId = 0; 
-
-
-    const {body, statusCode}  = await t.context.got.delete(`users/${userId}`);
-    //console.log(body);
-    //console.log(statusCode);
-    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
-});
-
-
-
-=======
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
 test('Create a User', async (t) => {
     const newUserData = {
         "name": "something",
@@ -281,85 +236,45 @@ test('Create a User', async (t) => {
     const {body, statusCode}  = await t.context.got.post(`users`, {
         json: newUserData,
     });
-<<<<<<< HEAD
-
-    
-
     //console.log(body);
     //console.log(statusCode);
-
-=======
-    //console.log(body);
-    //console.log(statusCode);
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
 
 //////////////////////// APPOINTMENT /////////////////////////
 
-<<<<<<< HEAD
-
-
-test('Get Appointments by User', async (t) => { 
-    const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`);
 
 test('Get Appointments by User', async (t) => {
     const userId = 0; 
     const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`);
     //console.log(body);
     //console.log(statusCode);
-
-=======
-test('Get Appointments by User', async (t) => {
-    const userId = 0; 
-    const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`);
-    //console.log(body);
-    //console.log(statusCode);
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
     t.true(Array.isArray(body), 'Response body should be an array');
     t.is(body[0].userId, userId, 'First appointment should have the expected userId');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
-
-<<<<<<< HEAD
 
 test('Get Appointments by User-BadCase', async (t) => { 
     const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`);
     t.is(statusCode, 404, 'Status code should be 404 for an unsuccessful request');
 });
 
-=======
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
-
 test('Get Appointments by Professional', async (t) => {
     const professionalId = 6; 
     const {body,statusCode}  = await t.context.got(`professionals/${professionalId}/appointments`);
-<<<<<<< HEAD
-
-
     //console.log(body);
     //console.log(statusCode);
-
-=======
-    //console.log(body);
-    //console.log(statusCode);
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
     t.true(Array.isArray(body), 'Response body should be an array');
     t.is(body[0].professionalId, professionalId, 'First appointment should have the expected professionalId');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
-
-<<<<<<< HEAD
 
 test('Get Appointments by Professional-BadCase', async (t) => {
     const professionalId = "yuifgireyf"; 
     const {body,statusCode}  = await t.context.got(`professionals/${professionalId}/appointments`);
     t.is(statusCode, 404, 'Status code should be 404 for an unsuccessful request');
 });
-
-=======
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
 
 
 test('Create an Appointment', async (t) => {
@@ -374,8 +289,6 @@ test('Create an Appointment', async (t) => {
     const {body, statusCode}  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
         json: newAppointmentData,
     });
-<<<<<<< HEAD
-
     
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
@@ -398,10 +311,4 @@ test('Create an Appointment-BadCase', async (t) => {
     //console.log(body);
     //console.log(statusCode);
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
-
-=======
-    //console.log(body);
-    //console.log(statusCode);
-    t.is(statusCode, 200, 'Status code should be 200 for a successful request');
->>>>>>> parent of 9da2a41 (Added Bad Case Test for Appointment)
 });
