@@ -292,11 +292,13 @@ test('Create an Appointment-BadCase', async (t) => {
         "appointmentDate": "2023-07-23T04:56:07.000Z"
       };
 
-      const appointmentId = 18000; 
+      const appointmentId = 18001; 
 
     const {body, statusCode}  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
         json: newAppointmentData,
+        throwHttpErrors: false,
     });
-    
+    console.log(body);
+    console.log(statusCode);
     t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
 });
