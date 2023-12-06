@@ -1,9 +1,11 @@
 openapi: 3.0.0
 info:
-  title: Epaggelmaties API
-  description: API for searching professionals
+  title: Beasy API
+  description: API for professionals
   version: 1.0.0
 servers:
+- url: https://virtserver.swaggerhub.com/STAVROSKIIG/busy/1.0.0
+  description: SwaggerHub API Auto Mocking
 - url: /
 paths:
   /professionals:
@@ -53,6 +55,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Professionals'
+      x-swagger-router-controller: Default
+    put:
+      summary: Update professional's details
+      operationId: professionalsprofessionalIdPUT
+      parameters:
+      - name: professionalID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfessionalUpdate'
+        required: true
+      responses:
+        "200":
+          description: Professional successfully updated
       x-swagger-router-controller: Default
     delete:
       summary: Delete a professional
@@ -176,7 +199,7 @@ paths:
                   $ref: '#/components/schemas/Appointments'
                 x-content-type: application/json
       x-swagger-router-controller: Default
-  /appointments/{appointmentId}/appointment:
+  /appointments/{appointmentId}/newAppointment:
     post:
       summary: Arrange an appointment
       operationId: appointmentsAppointmentIdAppointmentPOST
@@ -192,7 +215,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AppointmentRequest'
+              $ref: '#/components/schemas/Appointments'
         required: true
       responses:
         "200":
@@ -200,29 +223,28 @@ paths:
         "400":
           description: "Appointment, not available or user invalid"
       x-swagger-router-controller: Default
-  /appointment/{appointmentId}/return:
-    post:
-      summary: Return a appointment
-      operationId: appointmentAppointmentIdReturnPOST
+  /professionals/{professionalId}/appointments:
+    get:
+      summary: Get a list of appointments by a user
+      operationId: professionalsProfessionalIdAppointmentsGET
       parameters:
-      - name: appointmentId
+      - name: professionalId
         in: path
         required: true
         style: simple
         explode: false
         schema:
           type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReturnRequest'
-        required: true
       responses:
         "200":
-          description: Appointment successfully returned
-        "400":
-          description: "Bad request, return not possible"
+          description: A list of appointments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointments'
+                x-content-type: application/json
       x-swagger-router-controller: Default
 components:
   schemas:
@@ -244,6 +266,8 @@ components:
       properties:
         id:
           type: integer
+        email:
+          type: string
         profession:
           type: string
         name:
@@ -273,6 +297,13 @@ components:
           type: string
         email:
           type: string
+    ProfessionalUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
     Appointments:
       type: object
       properties:
@@ -286,14 +317,4 @@ components:
       example:
         professionalId: 6
         userId: 0
-        appointmentDate: 2000-01-23T04:56:07.000+00:00
-    AppointmentRequest:
-      type: object
-      properties:
-        userId:
-          type: integer
-    ReturnRequest:
-      type: object
-      properties:
-        userId:
-          type: integer
+        appointmentDate: 2000-01-23T04:56:07.000Z
