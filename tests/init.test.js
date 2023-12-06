@@ -183,7 +183,7 @@ test('GET Users', async (t) => {
 });
 
 
-//this needs a bad case
+
 test('Get User Details', async (t) => {
     const userId = 0; 
     const {body, statusCode}  = await t.context.got(`users/${userId}`);
@@ -194,6 +194,13 @@ test('Get User Details', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('Get User Details-BadCase', async (t) => {
+    const userId = "ifspoefjs"; 
+    const {body, statusCode}  = await t.context.got(`users/${userId}`,{
+        throwHttpErrors: false,
+        });
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
+});
 
 test('Update User Details', async (t) => {
     const userId = 0; 
@@ -211,6 +218,20 @@ test('Update User Details', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('Update User Details-BadCase', async (t) => {
+    const userId = 0; 
+    const updatedUserData = {        
+        "name": 236754,
+        "email": "coolerPapakiString"        
+    };
+
+    const {body, statusCode}  = await t.context.got.put(`users/${userId}`, {
+        json: updatedUserData,
+        throwHttpErrors: false,
+    });
+
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
+});
 
 test('Delete a User', async (t) => {
     const userId = 0;
@@ -236,6 +257,21 @@ test('Create a User', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('Create a User-BadCase', async (t) => {
+    const newUserData = {
+        "name": 476,
+        "id": "fg",
+        "email": "eimail"
+      };
+
+    const {body, statusCode}  = await t.context.got.post(`users`, {
+        json: newUserData,
+        throwHttpErrors: false,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
+});
 
 //////////////////////// APPOINTMENT /////////////////////////
 
