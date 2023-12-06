@@ -66,6 +66,18 @@ test('GET Professionals Details', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+
+test('GET Professionals Details-BadCase', async (t) => {
+    const professionalId = "otaksi"; 
+    const {body, statusCode}  = await t.context.got(`professionals/${professionalId}`,{
+        throwHttpErrors: false,
+        });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
+});
+
+
 test('Update Professional Details', async (t) => {
     const professionalId = 0; 
     const updatedProfessionalData = {        
@@ -81,9 +93,26 @@ test('Update Professional Details', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+
+test('Update Professional Details-BadCase', async (t) => {
+    const professionalId = "om[pamios"; 
+    const updatedProfessionalData = {        
+        "name": 1234,
+        "email": "coolPapakiString"        
+    };
+
+    const {body, statusCode}  = await t.context.got.put(`professionals/${professionalId}`, {
+        json: updatedProfessionalData,
+        throwHttpErrors: false,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
+});
+
+
 test('Delete a Professional', async (t) => {
     const professionalId = 0; 
-
 
     const {body, statusCode}  = await t.context.got.delete(`professionals/${professionalId}`);
     //console.log(body);
@@ -114,11 +143,39 @@ test('Create a Professional', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+
+
+test('Create a Professional-BadCase', async (t) => {
+    const newProfessionalData = {
+        "profession": 47,
+        "name": 90,
+        "id": "deskero",
+        "services": [
+          {
+            "availableservice": 6
+          },
+          {
+            "availableservice": "plakakia"
+          }
+        ]
+      };
+
+    const {body, statusCode}  = await t.context.got.post(`professionals`, {
+        json: newProfessionalData,
+        throwHttpErrors: false,
+    });
+    //console.log(body);
+    //console.log(statusCode);
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
+});
+
+
 //////////////////////// USER /////////////////////////
 test('GET Users', async (t) => {
     const {body,statusCode}  = await t.context.got("users");
     //console.log(body);
     //console.log(statusCode);
+
     t.true(Array.isArray(body), 'Response body should be an array');
     t.true(body.length > 0, 'Response should contain at least one user');
     t.is(body[0].name, 'name', 'First user should have the expected name');
@@ -126,6 +183,7 @@ test('GET Users', async (t) => {
 });
 
 
+//this needs a bad case
 test('Get User Details', async (t) => {
     const userId = 0; 
     const {body, statusCode}  = await t.context.got(`users/${userId}`);
@@ -147,6 +205,7 @@ test('Update User Details', async (t) => {
     const {body, statusCode}  = await t.context.got.put(`users/${userId}`, {
         json: updatedUserData,
     });
+
     //console.log(body);
     //console.log(statusCode);
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
@@ -154,9 +213,7 @@ test('Update User Details', async (t) => {
 
 
 test('Delete a User', async (t) => {
-    const userId = 0; 
-
-
+    const userId = 0;
     const {body, statusCode}  = await t.context.got.delete(`users/${userId}`);
     //console.log(body);
     //console.log(statusCode);
@@ -182,6 +239,7 @@ test('Create a User', async (t) => {
 
 //////////////////////// APPOINTMENT /////////////////////////
 
+
 test('Get Appointments by User', async (t) => {
     const userId = 0; 
     const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`);
@@ -192,6 +250,13 @@ test('Get Appointments by User', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('Get Appointments by User-BadCase', async (t) => { 
+    const userId = 0; 
+    const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`,{
+        throwHttpErrors: false,
+        });
+    t.is(statusCode, 200, 'Status code should be 404 for an unsuccessful request');
+});
 
 test('Get Appointments by Professional', async (t) => {
     const professionalId = 6; 
@@ -201,6 +266,14 @@ test('Get Appointments by Professional', async (t) => {
     t.true(Array.isArray(body), 'Response body should be an array');
     t.is(body[0].professionalId, professionalId, 'First appointment should have the expected professionalId');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+test('Get Appointments by Professional-BadCase', async (t) => {
+    const professionalId = "yuifgireyf"; 
+    const {body,statusCode}  = await t.context.got(`professionals/${professionalId}/appointments`,{
+        throwHttpErrors: false,
+        });
+    t.is(statusCode, 400, 'Status code should be 400 for an unsuccessful request');
 });
 
 
@@ -216,7 +289,24 @@ test('Create an Appointment', async (t) => {
     const {body, statusCode}  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
         json: newAppointmentData,
     });
-    //console.log(body);
-    //console.log(statusCode);
+    
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+test('Create an Appointment-BadCase', async (t) => {
+    const newAppointmentData = {
+        "professionalId": "trig",
+        "userId": "oxi",
+        "appointmentDate": "2023-07-23T04:56:07.000Z"
+      };
+
+      const appointmentId = 18001; 
+
+    const {body, statusCode}  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
+        json: newAppointmentData,
+        throwHttpErrors: false,
+    });
+    console.log(body);
+    console.log(statusCode);
+    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
 });
