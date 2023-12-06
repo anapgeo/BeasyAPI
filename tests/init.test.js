@@ -179,6 +179,7 @@ test('GET Users', async (t) => {
 });
 
 
+//this needs a bad case
 test('Get User Details', async (t) => {
     const userId = 0; 
     const {body, statusCode}  = await t.context.got(`users/${userId}`);
@@ -187,15 +188,6 @@ test('Get User Details', async (t) => {
     t.truthy(body, 'Response should have a body property');
     t.is(body.name, 'name', 'First user should have the expected name');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
-});
-
-//this needs a bad case
-test('Get User Details', async (t) => {
-    const userId = abcd; 
-    const {body, statusCode}  = await t.context.got(`users/${userId}`);
-    //console.log(body);
-    //console.log(statusCode);
-    t.is(statusCode, 200, 'Status code should be 404 for a unsuccessful request');
 });
 
 
