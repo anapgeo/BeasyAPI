@@ -22,7 +22,9 @@ jobs:
 
       - name: Adjust ava file permissions
         run: chmod +x node_modules/.bin/ava
-        
+
+      - name: Install signal-exit
+        run: npm install signal-exit
       - name: Run tests 
         run: npm run test
 
