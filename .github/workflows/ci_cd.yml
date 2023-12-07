@@ -17,6 +17,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install devDependencies
+        run: npm install
+
       - name: Adjust c8 file permissions
         run: chmod +x node_modules/.bin/c8
 
