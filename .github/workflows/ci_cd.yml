@@ -13,16 +13,26 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: Delete node_modules
+        run: rm -rf node_modules
+      - name: Delete package-lock.json
+        run: rm package-lock.json
+      - name: Install dependencies
+        run: npm install
 
       - name: Install dependencies
         run: npm install
+
+     
 
       - name: Adjust c8 file permissions
         run: chmod +x node_modules/.bin/c8
 
       - name: Adjust ava file permissions
         run: chmod +x node_modules/.bin/ava
-        
+
+      - name: Install signal-exit
+        run: npm install signal-exit
       - name: Run tests 
         run: npm run test
 

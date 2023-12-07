@@ -5,10 +5,9 @@
  * Arrange an appointment
  *
  * body Appointments 
- * appointmentId Integer 
  * no response value expected for this operation
  **/
-exports.appointmentsAppointmentIdAppointmentPOST = function(body,appointmentId) {
+exports.appointmentsAppointmentIdAppointmentPOST = function(body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -106,7 +105,7 @@ exports.professionalsProfessionalIDGET = function(professionalID) {
 
 
 /**
- * Get a list of appointments by a user
+ * Get a list of appointments by a professional
  *
  * professionalId Integer 
  * returns List
