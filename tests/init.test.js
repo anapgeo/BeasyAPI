@@ -1,7 +1,7 @@
 const http = require('http');
 const test = require('ava');
-const got = require('got');
-const listen = require('test-listen')
+const got = import('got');
+const listen = import('test-listen')
 
 const { professionalsGET } = require('../service/DefaultService.js');
 const app =require('../index.js');
