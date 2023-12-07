@@ -4,8 +4,6 @@ info:
   description: API for professionals
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/GIORGIOANAST10/BeasyAPI/1.0.0
-  description: SwaggerHub API Auto Mocking
 - url: https://virtserver.swaggerhub.com/STAVROSKIIG/busy/1.0.0
   description: SwaggerHub API Auto Mocking
 - url: /

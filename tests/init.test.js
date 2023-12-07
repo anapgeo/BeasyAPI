@@ -1,7 +1,7 @@
 const http = require('http');
 const test = require('ava');
-const got = import('got');
-const listen = import('test-listen')
+const got = require('got');
+const listen = require('test-listen')
 
 const { professionalsGET } = require('../service/DefaultService.js');
 const app =require('../index.js');
@@ -211,9 +211,8 @@ test('Create an Appointment', async (t) => {
         "appointmentDate": "2023-07-23T04:56:07.000Z"
       };
 
-      const appointmentId = 18000; 
 
-    const {body, statusCode}  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
+    const {body, statusCode}  = await t.context.got.post(`appointments`, {
         json: newAppointmentData,
     });
     //console.log(body);
