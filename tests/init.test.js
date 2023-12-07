@@ -218,4 +218,5 @@ test('Create an Appointment', async (t) => {
     //console.log(body);
     //console.log(statusCode);
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+
 });
