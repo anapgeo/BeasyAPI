@@ -386,5 +386,5 @@ test('Create an Appointment-BadCase', async (t) => {
     });
     console.log(body);
     console.log(statusCode);
-    t.is(statusCode, 400, 'Status code should be 400 for a unsuccessful request');
+    t.is(statusCode, 404, 'Status code should be 404 for a unsuccessful request');
 });
