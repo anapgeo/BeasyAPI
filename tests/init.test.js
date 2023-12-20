@@ -3,7 +3,7 @@ const test = require('ava');
 const got = require('got');
 const listen = require('test-listen')
 
-const { professionalsGET,usersGET, professionalsProfessionalIDGET, usersUserIdGET } = require('../service/DefaultService.js');
+const { professionalsGET,usersGET, professionalsProfessionalIDGET, usersUserIdGET, usersUserIdAppointmentsGET, professionalsProfessionalIdAppointmentsGET } = require('../service/DefaultService.js');
 const app =require('../index.js');
 
 // test('Random Test', t => {
@@ -313,6 +313,14 @@ test('Get Appointments by User', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('Get Appointments by User by function', async (t) => {
+    const userId = 0; 
+    const result = await usersUserIdAppointmentsGET(userId);
+    t.true(Array.isArray(result), 'Response body should be an array');
+    t.is(result[0].userId, userId, 'First appointment should have the expected userId');
+    
+});
+
 test('Get Appointments by User-BadCase', async (t) => { 
     const userId = 0; 
     const {body,statusCode}  = await t.context.got(`users/${userId}/appointments`,{
@@ -329,6 +337,13 @@ test('Get Appointments by Professional', async (t) => {
     t.true(Array.isArray(body), 'Response body should be an array');
     t.is(body[0].professionalId, professionalId, 'First appointment should have the expected professionalId');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+test('Get Appointments by Professional by function', async (t) => {
+    const professionalId = 6; 
+    const result  = await professionalsProfessionalIdAppointmentsGET(professionalId);
+    t.true(Array.isArray(result), 'Response body should be an array');
+    t.is(result[0].professionalId, professionalId, 'First appointment should have the expected professionalId');
 });
 
 test('Get Appointments by Professional-BadCase', async (t) => {
