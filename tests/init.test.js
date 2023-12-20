@@ -3,7 +3,7 @@ const test = require('ava');
 const got = require('got');
 const listen = require('test-listen')
 
-const { professionalsGET,usersGET } = require('../service/DefaultService.js');
+const { professionalsGET,usersGET, professionalsProfessionalIDGET, usersUserIdGET } = require('../service/DefaultService.js');
 const app =require('../index.js');
 
 // test('Random Test', t => {
@@ -46,6 +46,7 @@ test.after.always((t) => {
     t.context.server.close();
 });
 
+
 test('GET Professionals', async (t) => {
     const {body,statusCode}  = await t.context.got("professionals");
     //console.log(body);
@@ -55,6 +56,13 @@ test('GET Professionals', async (t) => {
     t.is(body[0].profession, 'profession', 'First professional should have the expected profession value');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
+
+test('GET Professionals by function', async (t) => {
+    const result  = await professionalsGET();
+    t.true(Array.isArray(result), 'Response body should be an array');
+    t.true(result.length > 0, 'Response should contain at least one professional');
+    t.is(result[0].profession, 'profession', 'First professional should have the expected profession value');
+    });
 
 test('GET Professionals Details', async (t) => {
     const professionalId = 0; 
@@ -66,6 +74,13 @@ test('GET Professionals Details', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+test('GET Professionals Details by function', async (t) => {
+    const professionalId = 0; 
+    const result  = await professionalsProfessionalIDGET(professionalId);
+    t.truthy(result, 'Response should have a body property');
+    t.is(result.profession, 'profession', 'First professional should have the expected profession value');
+    
+});
 
 test('GET Professionals Details-BadCase', async (t) => {
     const professionalId = "otaksi"; 
@@ -197,6 +212,13 @@ test('Get User Details', async (t) => {
     t.truthy(body, 'Response should have a body property');
     t.is(body.name, 'name', 'First user should have the expected name');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
+});
+
+test('Get User Details by function', async (t) => {
+    const userId = 0; 
+    const result  = await usersUserIdGET(userId);
+    t.truthy(result, 'Response should have a body property');
+    t.is(result.name, 'name', 'First user should have the expected name');
 });
 
 test('Get User Details-BadCase', async (t) => {
