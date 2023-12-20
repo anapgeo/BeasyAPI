@@ -199,18 +199,10 @@ paths:
                   $ref: '#/components/schemas/Appointments'
                 x-content-type: application/json
       x-swagger-router-controller: Default
-  /appointments/{appointmentId}/newAppointment:
+  /appointments:
     post:
       summary: Arrange an appointment
       operationId: appointmentsAppointmentIdAppointmentPOST
-      parameters:
-      - name: appointmentId
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
       requestBody:
         content:
           application/json:
@@ -225,7 +217,7 @@ paths:
       x-swagger-router-controller: Default
   /professionals/{professionalId}/appointments:
     get:
-      summary: Get a list of appointments by a user
+      summary: Get a list of appointments by a professional
       operationId: professionalsProfessionalIdAppointmentsGET
       parameters:
       - name: professionalId

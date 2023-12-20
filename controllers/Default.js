@@ -3,8 +3,8 @@
 var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
 
-module.exports.appointmentsAppointmentIdAppointmentPOST = function appointmentsAppointmentIdAppointmentPOST (req, res, next, body, appointmentId) {
-  Default.appointmentsAppointmentIdAppointmentPOST(body, appointmentId)
+module.exports.appointmentsAppointmentIdAppointmentPOST = function appointmentsAppointmentIdAppointmentPOST (req, res, next, body) {
+  Default.appointmentsAppointmentIdAppointmentPOST(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
