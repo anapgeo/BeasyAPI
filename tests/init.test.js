@@ -3,7 +3,7 @@ const test = require('ava');
 const got = require('got');
 const listen = require('test-listen')
 
-const { professionalsGET } = require('../service/DefaultService.js');
+const { professionalsGET,usersGET } = require('../service/DefaultService.js');
 const app =require('../index.js');
 
 // test('Random Test', t => {
@@ -182,7 +182,12 @@ test('GET Users', async (t) => {
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
-
+test('GET Users by function', async (t) => {
+    const result  = await usersGET();
+    t.true(Array.isArray(result), 'Response body should be an array');
+    t.true(result.length > 0, 'Response should contain at least one user');
+    t.is(result[0].name, 'name', 'First user should have the expected name'); 
+});
 
 test('Get User Details', async (t) => {
     const userId = 0; 
