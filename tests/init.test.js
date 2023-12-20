@@ -366,6 +366,7 @@ test('Create an Appointment', async (t) => {
 
     const {body, statusCode}  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
         json: newAppointmentData,
+        throwHttpErrors: false,
     });
     
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
