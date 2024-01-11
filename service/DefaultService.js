@@ -7,8 +7,8 @@
  * body Appointments 
  * no response value expected for this operation
  **/
-exports.appointmentsAppointmentIdAppointmentPOST = function(body) {
-  return new Promise(function(resolve, reject) {
+exports.appointmentsAppointmentIdAppointmentPOST = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -20,7 +20,7 @@ exports.appointmentsAppointmentIdAppointmentPOST = function(body) {
  * returns List
  **/
 exports.professionalsGET = function() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = [ {
   "profession" : "profession",
@@ -56,8 +56,8 @@ exports.professionalsGET = function() {
  * body Professionals 
  * no response value expected for this operation
  **/
-exports.professionalsPOST = function(body) {
-  return new Promise(function(resolve, reject) {
+exports.professionalsPOST = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -69,8 +69,8 @@ exports.professionalsPOST = function(body) {
  * professionalID Integer 
  * no response value expected for this operation
  **/
-exports.professionalsProfessionalIDDELETE = function(professionalID) {
-  return new Promise(function(resolve, reject) {
+exports.professionalsProfessionalIDDELETE = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -82,8 +82,8 @@ exports.professionalsProfessionalIDDELETE = function(professionalID) {
  * professionalID Integer 
  * returns Professionals
  **/
-exports.professionalsProfessionalIDGET = function(professionalID) {
-  return new Promise(function(resolve, reject) {
+exports.professionalsProfessionalIDGET = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "profession" : "profession",
@@ -110,8 +110,8 @@ exports.professionalsProfessionalIDGET = function(professionalID) {
  * professionalId Integer 
  * returns List
  **/
-exports.professionalsProfessionalIdAppointmentsGET = function(professionalId) {
-  return new Promise(function(resolve, reject) {
+exports.professionalsProfessionalIdAppointmentsGET = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = [ {
   "professionalId" : 6,
@@ -138,8 +138,8 @@ exports.professionalsProfessionalIdAppointmentsGET = function(professionalId) {
  * professionalID Integer 
  * no response value expected for this operation
  **/
-exports.professionalsprofessionalIdPUT = function(body,professionalID) {
-  return new Promise(function(resolve, reject) {
+exports.professionalsprofessionalIdPUT = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -151,7 +151,7 @@ exports.professionalsprofessionalIdPUT = function(body,professionalID) {
  * returns List
  **/
 exports.usersGET = function() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = [ {
   "name" : "name",
@@ -177,8 +177,8 @@ exports.usersGET = function() {
  * body User 
  * no response value expected for this operation
  **/
-exports.usersPOST = function(body) {
-  return new Promise(function(resolve, reject) {
+exports.usersPOST = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -190,8 +190,8 @@ exports.usersPOST = function(body) {
  * userId Integer 
  * returns List
  **/
-exports.usersUserIdAppointmentsGET = function(userId) {
-  return new Promise(function(resolve, reject) {
+exports.usersUserIdAppointmentsGET = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = [ {
   "professionalId" : 6,
@@ -217,8 +217,8 @@ exports.usersUserIdAppointmentsGET = function(userId) {
  * userId Integer 
  * no response value expected for this operation
  **/
-exports.usersUserIdDELETE = function(userId) {
-  return new Promise(function(resolve, reject) {
+exports.usersUserIdDELETE = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
@@ -230,8 +230,8 @@ exports.usersUserIdDELETE = function(userId) {
  * userId Integer 
  * returns User
  **/
-exports.usersUserIdGET = function(userId) {
-  return new Promise(function(resolve, reject) {
+exports.usersUserIdGET = function() {
+  return new Promise(function(resolve) {
     var examples = {};
     examples['application/json'] = {
   "name" : "name",
@@ -254,8 +254,8 @@ exports.usersUserIdGET = function(userId) {
  * userId Integer 
  * no response value expected for this operation
  **/
-exports.usersUserIdPUT = function(body,userId) {
-  return new Promise(function(resolve, reject) {
+exports.usersUserIdPUT = function() {
+  return new Promise(function(resolve) {
     resolve();
   });
 }
