@@ -60,7 +60,7 @@ test('Get Appointments by User-BadCase', async (t) => {
     });
     
     // Assertions
-    t.is(statusCode, 200, 'Status code should be 200 for an unsuccessful request');
+    t.is(statusCode, 404, 'Status code should be 404 for an unsuccessful request');
 });
 
 // Similar tests for appointments by professionals...
