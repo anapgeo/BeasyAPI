@@ -9,17 +9,6 @@ exports.respondWithCode = function(code, payload) {
   return new ResponsePayload(code, payload);
 }
 
-// Function to write JSON response to the provided HTTP response object
-var writeJson = exports.writeJson = function(response, arg1, arg2) {
-  var { code, payload } = determineCodeAndPayload(arg1, arg2);
-  code = code || 200;
-
-  if (typeof payload === 'object') {
-    payload = JSON.stringify(payload, null, 2);
-  }
-
-  setResponseHeadersAndEnd(response, code, payload);
-}
 
 // Helper function to determine code and payload from arguments
 function determineCodeAndPayload(arg1, arg2) {
