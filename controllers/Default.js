@@ -93,7 +93,7 @@ module.exports.usersGET = function usersGET(req, res) {
 };
 
 // Handler for creating a new user
-module.exports.usersPOST = function usersPOST(req, res, next, body) {
+module.exports.usersPOST = function usersPOST(req, res, body) {
   Default.usersPOST(body)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -104,7 +104,7 @@ module.exports.usersPOST = function usersPOST(req, res, next, body) {
 };
 
 // Handler for retrieving appointments of a user by ID
-module.exports.usersUserIdAppointmentsGET = function usersUserIdAppointmentsGET(req, res, next, userId) {
+module.exports.usersUserIdAppointmentsGET = function usersUserIdAppointmentsGET(req, res, userId) {
   Default.usersUserIdAppointmentsGET(userId)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -115,7 +115,7 @@ module.exports.usersUserIdAppointmentsGET = function usersUserIdAppointmentsGET(
 };
 
 // Handler for deleting a user by ID
-module.exports.usersUserIdDELETE = function usersUserIdDELETE(req, res, next, userId) {
+module.exports.usersUserIdDELETE = function usersUserIdDELETE(req, res, userId) {
   Default.usersUserIdDELETE(userId)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -126,7 +126,7 @@ module.exports.usersUserIdDELETE = function usersUserIdDELETE(req, res, next, us
 };
 
 // Handler for retrieving a user by ID
-module.exports.usersUserIdGET = function usersUserIdGET(req, res, next, userId) {
+module.exports.usersUserIdGET = function usersUserIdGET(req, res, userId) {
   Default.usersUserIdGET(userId)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -137,7 +137,7 @@ module.exports.usersUserIdGET = function usersUserIdGET(req, res, next, userId) 
 };
 
 // Handler for updating a user by ID
-module.exports.usersUserIdPUT = function usersUserIdPUT(req, res, next, body, userId) {
+module.exports.usersUserIdPUT = function usersUserIdPUT(req, res,  body, userId) {
   Default.usersUserIdPUT(body, userId)
     .then(function (response) {
       utils.writeJson(res, response);
