@@ -2,12 +2,13 @@
 const http = require('http');
 const test = require('ava');
 const got = require('got');
-const listen = require('test-listen')
+const listen = require('test-listen');
 const { usersUserIdAppointmentsGET, professionalsProfessionalIdAppointmentsGET } = require('../service/DefaultService.js');
 const app = require('../index.js');
 
 // Setup before and after hooks
 test.before(async (t) => {
+
     // Create an HTTP server instance for testing
     t.context.server = http.createServer(app);
 
@@ -19,6 +20,7 @@ test.before(async (t) => {
 });
 
 // Close the server after all tests are executed
+
 test.after.always((t) => {
     t.context.server.close();
 });
@@ -31,20 +33,28 @@ test('Get Appointments by User', async (t) => {
     const { body, statusCode }  = await t.context.got(`users/${userId}/appointments`);
     
     // Assertions for the response
+
     t.true(Array.isArray(body), 'Response body should be an array');
     t.is(body[0].userId, userId, 'First appointment should have the expected userId');
     t.is(statusCode, 200, 'Status code should be 200 for a successful request');
 });
 
+
 // Test to get appointments by user using a function
+
 test('Get Appointments by User by function', async (t) => {
-    const userId = 0; 
+    const userId = 0;
+    
+    // Call the function to get user appointments
     const result = await usersUserIdAppointmentsGET(userId);
     
+
     // Assertions for the result
+
     t.true(Array.isArray(result), 'Response body should be an array');
-    t.is(result[0].userId, userId, 'First appointment should have the expected userId'); 
+    t.is(result[0].userId, userId, 'First appointment should have the expected userId');
 });
+
 
 // Test to get appointments by user with an invalid user ID (Bad Case)
 test('Get Appointments by User-BadCase', async (t) => { 
@@ -90,12 +100,14 @@ test('Get Appointments by Professional-BadCase', async (t) => {
 });
 
 // Test to create a new appointment
+
 test('Create an Appointment', async (t) => {
     const newAppointmentData = {
         "professionalId": 80,
         "userId": 66,
         "appointmentDate": "2023-07-23T04:56:07.000Z"
     };
+
     const appointmentId = 18000; 
     const { body, statusCode }  = await t.context.got.post(`appointments`, {
         json: newAppointmentData,
@@ -106,14 +118,17 @@ test('Create an Appointment', async (t) => {
 });
 
 // Test to create a new appointment with invalid data (Bad Case)
+
 test('Create an Appointment-BadCase', async (t) => {
     const newAppointmentData = {
         "professionalId": "trig",
         "userId": "oxi",
         "appointmentDate": "2023-07-23T04:56:07.000Z"
     };
+
     const appointmentId = 18001; 
     const { body, statusCode }  = await t.context.got.post(`appointments/${appointmentId}/newAppointment`, {
+
         json: newAppointmentData,
         throwHttpErrors: false,
     });
@@ -121,5 +136,6 @@ test('Create an Appointment-BadCase', async (t) => {
     // Assertions for the result in a bad case
     console.log(body);
     console.log(statusCode);
+
     t.is(statusCode, 404, 'Status code should be 404 for an unsuccessful request');
 });
